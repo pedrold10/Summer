@@ -4,50 +4,50 @@ package com.example.summer
 import android.content.ContentValues
 import android.content.Context
 
-class PessoaDAO {
+class ItemDAO {
     val banco: BancoHelper
 
     constructor(context: Context){
         this.banco = BancoHelper(context)
     }
 
-    fun insert(pessoa: Pessoa){
+    fun insert(item: Item){
         val cv = ContentValues()
-        cv.put("nome", pessoa.nome)
-        cv.put("data", pessoa.data.timeInMillis)
-        this.banco.writableDatabase.insert("pessoas", null, cv)
+        cv.put("item", item.nome)
+        cv.put("preco", item.preco)
+        this.banco.writableDatabase.insert("itens", null, cv)
     }
 
-    fun read(): ArrayList<Pessoa>{
-        val lista = arrayListOf<Pessoa>()
-        val colunas = arrayOf("id", "nome", "data")
+    fun read(): ArrayList<Item>{
+        val lista = arrayListOf<Item>()
+        val colunas = arrayOf("id", "nome", "preco")
         val c = this.banco.readableDatabase.query("pessoas", colunas, null, null, null, null, "nome")
         c.moveToFirst()
         for (i in 1 .. c.count){
             val id = c.getInt(0)
             val nome = c.getString(1)
-            val data = c.getLong(2)
-            val pessoa = Pessoa(id, nome, data)
-            lista.add(pessoa)
+            val preco = c.getFloat(2)
+            val item = Item(id, nome, preco)
+            lista.add(item)
             c.moveToNext()
         }
         return lista
     }
 
-    fun find(id: Int): Pessoa?{
+    fun find(id: Int): Item?{
         return null
     }
 
     fun delete(id: Int){
         val where = arrayOf(id.toString())
-        this.banco.writableDatabase.delete("pessoas", "id = ?", where)
+        this.banco.writableDatabase.delete("itens", "id = ?", where)
     }
 
-    fun delete(pessoa: Pessoa){
+    fun delete(pessoa: Item){
         this.delete(pessoa.id)
     }
 
-    fun update(pessoa: Pessoa){
+    fun update(pessoa: Item){
 
     }
 }
