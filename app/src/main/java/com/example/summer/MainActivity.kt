@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         this.listView.setOnItemLongClickListener(OnItemLongClick())
 
         this.button.setOnClickListener { salvar() }
-        this.button.setOnClickListener { somar(this.etPreco) }
+        this.button.setOnClickListener { somar(this.etPreco.text.toString()) }
     }
 
     fun salvar(){
@@ -43,15 +43,15 @@ class MainActivity : AppCompatActivity() {
         this.atualiza()
         this.etNome.setText("")
     }
-    fun somar(preco: EditText): Double {
+    fun somar(preco: String): Double {
         var total = 0.0
-        total += preco.toString().toDouble()
+        total += preco.toDouble()
         return total
     }
 
     fun atualiza(){
         val layout = android.R.layout.simple_list_item_1
-        this.listView.adapter = ArrayAdapter<Item>(this, layout,this.dao.read())
+        this.listView.adapter = ArrayAdapter(this, layout, this.dao.read())
     }
 
     inner class OnItemClick: AdapterView.OnItemClickListener{
@@ -63,9 +63,9 @@ class MainActivity : AppCompatActivity() {
 
     inner class OnItemLongClick: AdapterView.OnItemLongClickListener{
         override fun onItemLongClick(adapter: AdapterView<*>?, view: View?, index: Int, id: Long): Boolean {
-            val pessoa = adapter?.getItemAtPosition(index) as Item
-            this@MainActivity.dao.delete(pessoa)
-            val msg = "${pessoa.nome} removido com sucesso!"
+            val item = adapter?.getItemAtPosition(index) as Item
+            this@MainActivity.dao.delete(item)
+            val msg = "${item.nome} removido com sucesso!"
             Toast.makeText(this@MainActivity, msg, Toast.LENGTH_SHORT).show()
             this@MainActivity.atualiza()
             return true

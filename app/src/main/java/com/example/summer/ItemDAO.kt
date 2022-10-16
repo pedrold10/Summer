@@ -21,7 +21,7 @@ class ItemDAO {
     fun read(): ArrayList<Item>{
         val lista = arrayListOf<Item>()
         val colunas = arrayOf("id", "nome", "preco")
-        val c = this.banco.readableDatabase.query("pessoas", colunas, null, null, null, null, "nome")
+        val c = this.banco.readableDatabase.query("itens", colunas, null, null, null, null, "nome")
         c.moveToFirst()
         for (i in 1 .. c.count){
             val id = c.getInt(0)
