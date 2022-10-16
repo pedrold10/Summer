@@ -26,7 +26,7 @@ class ItemDAO {
         for (i in 1 .. c.count){
             val id = c.getInt(0)
             val nome = c.getString(1)
-            val preco = c.getFloat(2)
+            val preco = c.getDouble(2)
             val item = Item(id, nome, preco)
             lista.add(item)
             c.moveToNext()

@@ -37,15 +37,15 @@ class MainActivity : AppCompatActivity() {
     fun salvar(){
         val nome = this.etNome.text.toString()
         val preco = this.etPreco.text.toString()
-        var precoFloat = preco.toFloat()
-        val item = Item(nome, precoFloat)
+        var precoDouble = preco.toDouble()
+        val item = Item(nome, precoDouble)
         this.dao.insert(item)
         this.atualiza()
         this.etNome.setText("")
     }
-    fun somar(preco: EditText): Float {
-        var total: Float = 1F
-        total = total + preco.toString().toFloat()
+    fun somar(preco: EditText): Double {
+        var total = 0.0
+        total += preco.toString().toDouble()
         return total
     }
 

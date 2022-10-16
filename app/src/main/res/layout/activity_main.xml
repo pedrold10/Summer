@@ -33,7 +33,7 @@
     </LinearLayout>
 
     <TextView
-        android:text="PESSOAS CADASTRADAS"
+        android:text="ITENS CADASTRADOS"
         android:textStyle="bold"
         android:background="#0000FF"
         android:textColor="#FFFFFF"

@@ -6,17 +6,17 @@ import java.util.*
 class Item {
     var id: Int
     var nome: String
-    var preco: Float
+    var preco: Double
 
     // memória
-    constructor(nome: String, preco: Float){
+    constructor(nome: String, preco: Double){
         this.id = -1
         this.nome = nome
         this.preco = preco
     }
 
     // banco
-    constructor(id: Int, nome: String, preco: Float){
+    constructor(id: Int, nome: String, preco: Double){
         this.id = id
         this.nome = nome
         this.preco = preco
